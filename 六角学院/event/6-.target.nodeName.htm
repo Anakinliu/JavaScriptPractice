@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ol {
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            border: 2px dashed gray;
+        }
+        li {
+            margin-bottom: 10px;
+            background-color: hotpink;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ol>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, neque!</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit amet consectetur.</li>
+            <li>Lorem ipsum dolor sit.</li>
+            <li>Lorem, ipsum.</li>
+        </ol>
+    </div>
+    <script>
+        // 虽然选择的是最外面的 div，但是可以使用 event.target.nodeName 来过滤得到子节点。
+        let box = document.querySelector('.main');
+        box.addEventListener('click', function(event) {
+            if (event.target.nodeName === 'LI') {
+                // console.log(event.target.nodeName);
+                console.log('你点击了 li 。');
+            }
+        }, false);
+    </script>
+</body>
+</html>

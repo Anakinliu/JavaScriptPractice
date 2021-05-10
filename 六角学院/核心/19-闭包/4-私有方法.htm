@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function opMoney(startMoney) {
+    let money = startMoney === 0 ? 0 : startMoney || 1000;
+    return {
+        addMoney: function(m) {
+            money += m;
+        },
+        getMoney: function(m) {
+            if (m > money) {
+                console.log(m + "? 只有这些钱了。。。" + money);
+                money = 0;
+                return money;
+            }
+            money -= m;
+            return m;
+        },
+        showMoney: function() {
+            console.log("还有 " + money);
+        }
+    }
+}
+
+let Ming = opMoney(1000);
+Ming.addMoney(2000);
+Ming.getMoney(1000);
+Ming.getMoney(500);
+Ming.getMoney(2000);
+Ming.showMoney();
+</script>
+</body>
+</html>

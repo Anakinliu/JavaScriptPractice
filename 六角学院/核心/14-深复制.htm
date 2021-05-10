@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 利用JSON.stringify 将js对象序列化（JSON字符串），再使用JSON.parse来反序列化(还原)js对象 */
+// var x = {
+//     name: 'ming',
+//     family: {
+//         num: 5
+//     }
+// }
+// var y = x;
+// console.log(x === y);
+// var z = JSON.parse(JSON.stringify(x));
+// console.log(z);
+// console.log(x === z);
+
+// var oldObj = {
+//     name: 'ming',
+//     family: {
+//         num: 5
+//     },
+//     did: function() {
+//         console.log(233);
+//     },
+//     mem: ['a','z']
+// }
+
+// var oldObj = {
+//     a1: 5
+// }
+// oldObj.self = oldObj;
+
+// console.log(oldObj);
+
+// V1
+function deepClone(obj) {
+    let newObj = Array.isArray(obj) ? [] : {}
+    if (obj && typeof obj === "object") {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                newObj[key] = (obj && typeof obj[key] === 'object') ? deepClone(obj[key]) : obj[key];
+            }
+        }
+    } 
+    return newObj;
+}
+
+// V2
+function cloneDeep(obj){ 
+  // 维护的 引用数组
+  let visitedObjs = [];
+  function baseClone(target){
+
+    // 非 对象直接返回，函数也直接返回
+    if(!(typeof target === 'object')) return target
+
+    // 遍历寻找 相同引用
+    for(let i = 0; i < visitedObjs.length; i++){
+      if(visitedObjs[i].target === target){        
+        return visitedObjs[i].result;
+      }
+    }
+
+    // 要复制的是对象 or 数组
+    let result = Array.isArray(target) ? [] : {} 
+    
+    // 添加到引用list里
+    visitedObjs.push({ target, result }) 
+
+    const keys = Object.keys(target);
+    for(let i = 0, len = keys.length; i < len; i++) {
+      console.log('来了');
+      result[keys[i]] = baseClone(target[keys[i]])
+    }
+    return result
+  } 
+  return baseClone(obj);
+}
+
+// const newObj = deepClone(oldObj);
+
+// oldObj.mem[0] = 'A';
+// oldObj.family.num = 999;
+// oldObj.did = function() {
+//     console.log(666);
+// }
+
+// console.log(newObj);
+
+// newObj.did();
+
+// var arr = [1,2,3];
+// var obj = {};
+// obj.arr1 = arr;
+// obj.arr2 = arr;
+
+// console.log(obj.arr1 === obj.arr2);  // true
+
+// newObj = cloneDeep(obj);
+
+// console.log(newObj.arr1 === newObj.arr2);  // false
+// var arr2 = cloneDeep(arr);
+// console.log(arr, arr2);
+
+// console.log('END');
+
+var f1 = function(a,b) {
+  console.log(a, b);
+}
+
+var f2 = cloneDeep(f1);
+f2('JSUT', 'GAN');
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function int(n) {
+            // 使用三元是因为有可能 n 就是 0 的情况出现
+            n = n === 0 ? 0 : Number(n) || 500;
+            console.log(n + ' RMB');
+        }
+        int();
+    </script>
+</body>
+</html>

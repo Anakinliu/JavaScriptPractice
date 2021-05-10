@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包</title>
+</head>
+<body>
+    <script>
+function money() {
+    let bankMoney = 100;
+    return function(earnMoney) {
+        bankMoney += earnMoney;
+        return bankMoney;
+    };
+}
+
+console.log(money()(10));  // 110
+console.log(money()(10));  // 110
+
+console.log('----');
+
+// 一般是用这种才是存钱的方法：
+var f = money();
+console.log(f(10));  // 110
+console.log(f(10));  // 120
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .wrap {
+        box-sizing: border-box;
+        width: 200px;
+        height: 200px;
+        background-color: #000;
+        padding: 50px;
+    }
+    .content {
+        box-sizing: border-box;
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="content">
+
+    </div>
+
+    <script>
+        let [aBox, bBox] = document.querySelectorAll('div');
+        var x = function (e) {
+            // console.log(e.target);
+            console.log(e.currentTarget);
+        };
+        aBox.addEventListener('click', x, false);
+        // bBox.addEventListener('click', x, false);
+    </script>
+</div>
+</body>
+</html>

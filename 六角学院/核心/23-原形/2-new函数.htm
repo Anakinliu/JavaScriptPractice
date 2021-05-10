@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new函数</title>
+</head>
+<body>
+<script>
+function Dog(name, size) {
+    this.nam = name;
+    this.siz = size;
+}
+
+// 普通方法的__proto__里就包含了：constructor: ƒ Cat(name, size)
+function Cat(name, size) {
+    console.log();
+}
+
+console.log(Dog);
+console.dir(Dog);
+
+console.log(Cat);
+console.dir(Cat);
+
+let d1 = new Dog('d1', 'little');
+let d2 = new Dog('d2', 'big');
+
+// 只是没有属性
+let c1 = new Cat('c1', 'middle');
+let c2 = new Cat('c2', 'big');
+
+console.log(d1);
+console.dir(d2);
+
+console.log(c1);
+console.dir(c2);
+
+// 使用原形的prototype而非实例的__proto__
+Dog.prototype.bark = function() {
+    console.log(this.nam + ' 在叫。');
+}
+d1.bark();
+d2.bark();
+
+</script>
+</body>
+</html>

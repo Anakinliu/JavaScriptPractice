@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <h1>HEAD</h1>
+    </div>
+    <div class="main">
+        <div class="menu"> 
+            <p class="p1">Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="content">
+            <p class="p2">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis, suscipit. Delectus porro voluptate eaque, atque cum rem quisquam nobis aliquid neque dignissimos, quibusdam necessitatibus, iusto repudiandae voluptas nulla quas adipisci explicabo impedit aperiam. Praesentium odit blanditiis quas nesciunt animi porro maxime minus nisi dignissimos quidem necessitatibus molestiae sequi nulla velit temporibus saepe error, nostrum omnis ipsum aspernatur provident. Hic, nobis inventore, ullam sit libero necessitatibus cumque, neque esse voluptates consequatur modi unde quos deleniti quo magni qui quae! Numquam, delectus mollitia blanditiis eveniet laborum saepe, aut voluptate animi minus veritatis alias atque impedit laudantium aperiam nulla, quia cum minima necessitatibus.
+            </p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <script>
+        var a = document.createElement("p");
+        // 此时操作的就是一个 DOM 节点，只是暂时不会显示出来
+        a.textContent = '我是新来的';
+        a.setAttribute('class', 'new');
+        // 此时不会在现有DOM里添加这个元素
+
+        var c = document.querySelector(".content");
+        c.appendChild(a);
+
+        setTimeout(function() {
+            var old = document.querySelector('.new');
+            old.textContent = '老了';
+        }, 2000);
+        
+    </script>
+</body>
+</html>

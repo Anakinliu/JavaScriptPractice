@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple call</title>
+</head>
+<body>
+<script>
+window.gg = 'GG';
+
+// function s() {
+//     console.log(gg);
+// }
+// s();  // GG
+
+// (function() {
+//     console.log(gg);
+// })();  // GG
+
+// 闭包
+// function fA(a) {
+//     var gg = 'FF';
+
+//     return function() {
+//         console.log(this.gg);  // GG
+//     }
+// }
+// let b = fA();
+// b();
+
+
+// callback
+function myForEach(arr, f) {
+    for (let i=0; i < arr.length; i++) {
+        f(i);
+    }
+}
+arr = [1,3,5,7,9];
+myForEach(this.arr, function(e) {
+    console.log(this.arr[e]);
+});
+
+// setTimeOut
+var time = '2020';
+var mm = {
+    time: '2021',
+    tf: function() {
+        setTimeout(function() {
+            console.log(this.time);  // 2020
+        }, 1000);
+    }
+};
+
+mm.tf();
+
+var mmmm = {
+    time: '2021',
+    tf: function() {
+        let that = this;
+        setTimeout(function() {
+            console.log(that.time);  // 2021
+        }, 1000);
+    }
+};
+mmmm.tf();
+
+
+</script>
+</body>
+</html>

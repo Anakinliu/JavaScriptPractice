@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改原形链</title>
+</head>
+<body>
+<script>
+// var x = {
+//     name: "无码",
+//     age: 109,
+//     bark: function() {
+//         console.log('叫兽');
+//     }
+// }
+
+// var y = Object.create(x);
+// console.log(y === x);  // false
+// x.name = "有吗";
+// console.log(y);
+
+function FPS(title, size) {
+    this.title = title || 'FPS GAME';
+    this.size = size || '10GB';
+}
+
+FPS.prototype.shot = function() {
+    console.log('norm shotting');
+}
+
+function CSGO() {
+    FPS.call(this, 'CS');  // 用来获得父类的属性与值
+}
+
+
+CSGO.prototype = Object.create(FPS.prototype);
+// CSGO.prototype.constructor = CSGO;  //把原有的原形加回来
+
+
+CSGO.prototype.shot = function() {
+    console.log('CS shotting');
+}
+
+cs = new CSGO();
+
+console.dir(cs);
+
+console.log(cs.title, cs.size);  //CS 10GB
+
+cs.shot();  // norm shotting，因为现在CSGO的原形链的构造器没有指向CSGO构造函数
+
+cs.shot();
+
+console.log('cs.constructor: ' + cs.constructor);  // FPS or CSGO ???
+// console.dir(cs);  
+
+
+
+</script>
+</body>
+</html>

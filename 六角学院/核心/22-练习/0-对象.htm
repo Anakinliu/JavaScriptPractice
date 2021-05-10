@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dui xiang</title>
+</head>
+<body>
+<script>
+var Name = '全域';
+
+var person = {
+    Name: '小米',
+    getName: function() {
+        return this.Name;
+    }
+}
+
+var get2 = person.getName;
+console.log(get2());  // '全域'
+
+console.log(person.getName());  // '小米'
+
+</script>
+</body>
+</html>

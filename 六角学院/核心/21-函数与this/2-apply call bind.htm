@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call apply bind</title>
+</head>
+<body>
+<script>
+window.age = 11;
+
+let x = {
+    age: 22
+};
+
+function dd(a,b) {
+    'use strict';
+    console.log(a,b,this);  
+}
+
+// dd.call(x, 'A','B','C');  // A B {age:22}
+// dd.apply(x, ['A',"B", 'C']);  // A B {age:22}
+
+// let b = dd.bind(window, 'A');  // 绑定后手动执行
+// b('1','2');  //如果参数没有满，就再使用调用时的参数
+
+// dd.call(undefined, 'A', 'B');
+// let b = dd.bind(undefined, 'A','B');  // 绑定后手动执行
+// b();
+
+dd.call(undefined, 'A','B','C');  // A B undefined
+dd.apply(null, ['A',"B", 'C']);  // A B null
+
+</script>
+</body>
+</html>

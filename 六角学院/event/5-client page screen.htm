@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: fixed;
+        }
+        body {
+            max-width: 1080px;
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <p class="p1"></p>
+        <p class="p2"></p>
+        <p class="p3"></p>
+    </div>
+
+    <script>
+        function show(e) {
+            let ps = document.querySelectorAll('p');
+            ps[0].textContent = "client-x:" + e.clientX + " client-y:" + e.clientY;
+            ps[1].textContent = "screen-x:" + e.screenX + "  screen-y:" + e.screenY;
+            ps[2].textContent = "page-x:" + e.pageX + "  page-y:" + e.pageY;
+        }
+
+        document.addEventListener('mousemove', show, false);
+    </script>
+</body>
+</html>

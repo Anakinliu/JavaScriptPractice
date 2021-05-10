@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+function myAvg() {
+    let sum = 0;
+    let count = 0;
+    let f =  function (num) {
+        sum += num;
+        count += 1;
+        return sum / count;
+    }
+    return f;
+}
+
+let avg = myAvg();
+console.log(avg(10));  // 10
+console.log(avg(15));  // 12.5
+console.log(avg(20));  // 15
+
+    </script>
+</body>
+</html>

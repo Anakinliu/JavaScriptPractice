@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn1">onclick</button>
+    
+    <button class="btn2">add listener</button>
+
+    <script>
+let [btn1, btn2] = document.querySelectorAll('button');
+btn1.onclick = function(e) {
+    console.log('onclick-event-1');
+};
+btn1.onclick = function(e) {  // 覆盖前面的事件
+    console.log('onclick-event-2');
+};
+
+btn2.addEventListener('click', function(e) {
+    console.log(e);
+    console.log('add listener-event-1');
+}, false);
+btn2.addEventListener('click', function() {
+    console.log('add listener-event-2');
+}, false);
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map与parseInt</title>
+</head>
+<body>
+<script>
+let a = ['1','2','3'];
+let res = a.map(parseInt);
+console.log(res);
+
+// 相当于
+res = a.map(function(value, index) {
+    return parseInt(value, index);
+});
+console.log(res);
+
+console.log(parseInt(10, 16));
+</script>
+</body>
+</html>

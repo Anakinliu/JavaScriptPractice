@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            box-sizing: border-box;
+            width: 200px;
+            height: 200px;
+            background-color: #000;
+            padding: 50px;
+        }
+        .content {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="content">
+
+        </div>
+    </div>
+    <script>
+        let [trueBox, falseBox] = document.querySelectorAll('div');
+        trueBox.addEventListener('click', function() {
+            console.log('点击了大盒子');
+        },true);
+
+        falseBox.addEventListener('click', function() {
+            console.log('点击了小盒子');
+        },true);
+    </script>
+</body>
+</html>

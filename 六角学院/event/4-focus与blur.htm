@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            width: 80px;
+            height: 60px;
+            background-color: deepskyblue;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+
+    </style>
+</head>
+<body>
+    <button id="b1">按钮</button>
+
+    <script>
+        // 点击按钮会有focus，点击按钮外面会有blur，但是不会一直点击外面一直有blur
+        var b = document.querySelector('button');
+        b.addEventListener('focus', function() {
+            console.log('focus');
+        }, false);
+        
+        b.addEventListener('blur', function() {
+            console.log('blur');
+        }, false);
+
+    </script>
+</body>
+</html>

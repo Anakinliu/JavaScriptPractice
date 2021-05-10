@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原形与对象</title>
+</head>
+<body>
+<script>
+// Date就是一个函数
+console.log(Date);
+console.dir(Date);
+
+let dd = new Date();
+console.log(dd);
+console.dir(dd);
+
+Date.prototype.china = function() {
+    return this.getFullYear() + '/' + this.getMonth() + '/' + this.getDay();
+}
+
+console.log(dd.china());
+
+console.log(dd.__proto__ === Date.prototype);  // true
+</script>
+</body>
+</html>

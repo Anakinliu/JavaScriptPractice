@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// function fA() {
+    
+// }
+// console.log(fA.name);  // fA
+
+// var fB = function fC() {
+
+// }
+// var fD = function () {
+
+// }
+// console.log(fB.name);  // fC
+// console.log(fD.name);  // fD
+// fC();  // ReferenceError: fC is not defined
+
+// 递归调用的区别
+function fA(n) {
+    if (n < 1) {
+        return 1;
+    }
+    return fA(n-1);
+}
+
+var fB = function fC(n) {
+    if (n < 1) {
+        return 1;
+    }
+    return fB(n-1);
+    return fC(n-1); // 都可以
+}
+var fD = function (n) {
+    if (n < 1) {
+        return 1;
+    }
+    return fD(n-1);
+}
+
+console.log(fA(9));
+console.log(fB(9));
+console.log(fD(9));
+    </script>
+</body>
+</html>

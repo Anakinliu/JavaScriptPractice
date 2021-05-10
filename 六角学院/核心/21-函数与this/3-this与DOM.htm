@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this DOM</title>
+</head>
+<body>
+    <ol>
+        <li>lorem10</li>
+        <li>lorem10</li>
+        <li>lorem10</li>
+        <li>lorem10</li>
+        <li>lorem10</li>
+    </ol>
+
+    <button onclick="console.dir(this)">点击this</button>
+<script>
+    
+function changeBG(e) {
+    console.dir(this);
+    this.style.backgroundColor = 'red';
+}
+
+let lis = document.querySelectorAll('li');
+
+for (let i=0; i < lis.length; i++) {
+    lis[i].addEventListener('click', changeBG, false);
+}
+</script>
+</body>
+</html>

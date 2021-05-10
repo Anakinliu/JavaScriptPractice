@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var a = {
+    name: 'ming',
+    family: {
+        num: 3
+    }
+}
+newA = {}
+for (var att in a) {
+    newA[att] = a[att]
+}
+console.log(a);
+console.log(newA);
+// 对于复合类型的值，严格相等运算比较的是，它们是否引用同一个内存地址，
+console.log(a == newA);
+    </script>
+</body>
+</html>

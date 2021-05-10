@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性的四个特征</title>
+</head>
+<body>
+<script>
+    'use strict';
+let x = {
+    a: 1,
+    b: [2,4,6],
+    c: {
+        d: 'sss',
+        e: [1,3,5]
+    }
+}
+console.log(x);
+
+// Object.defineProperty(x, )
+
+Object.defineProperties(x, {
+    'a': {
+        value: 999,
+        writable: false,
+        enumerable: true,
+        configurable: false,
+    },
+    'b': {
+        writable: false,
+        configurable: false,
+    },
+    'c': {
+        writable: false,
+        configurable: false,
+    }
+});
+
+console.log(x);
+x.b[0] = 0;
+// x.b = [1];  //严格模式报错
+console.log(x);
+// x.a = 5;  //严格模式报错
+console.log(x);
+</script>
+</body>
+</html>
