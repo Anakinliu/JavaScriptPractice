@@ -1,3 +1,6 @@
+const { getList, getDeatil } = require("../controller/blog");
+const { SuccessModel } = require("../model/resModel");
+
 const blogAPIRouter = (req, res) => {
   const method = req.method;
   const path = req.url.split("?")[0];
@@ -6,10 +9,15 @@ const blogAPIRouter = (req, res) => {
 
   if (method === "GET") {
     if (path === "/api/blog/list") {
-      return "blog-list";
+      const author = req.querys.author || '';
+      const keyword = req.querys.keyword || '';
+      const listBlog = getList(author, keyword);
+      return new SuccessModel(listBlog);
     }
     if (path === "/api/blog/detail") {
-      return "blog-detail";
+      const blogID = req.querys.id;
+      const deatilBlog = getDeatil(blogID);
+      return new SuccessModel(deatilBlog);
     }
   }
   if (method === "POST") {

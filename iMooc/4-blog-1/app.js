@@ -1,10 +1,15 @@
 const blogAPI = require("./src/router/blog");
 const userAPI = require("./src/router/user");
+const querystring = require('querystring');
 
 const handleHttp = function (req, res) {
+  // req要传到下面的API里，所以这种方法带值方便
+  req.querys = querystring.parse(req.url.split('?')[1]);
+
+  // 得到了JSON结果
   const blogData = blogAPI(req, res);
   const userData = userAPI(req, res);
-  console.log("blogData", blogData);
+
   if (blogData) {
     // 设置相应数据格式为JSON，以便浏览器可以正确解析
     res.setHeader("Content-type", "application/json");
