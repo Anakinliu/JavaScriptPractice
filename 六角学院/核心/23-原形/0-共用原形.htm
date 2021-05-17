@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>共用原形</title>
+    <title>实例和类型共用一个原形</title>
 </head>
 <body>
 <script>
@@ -20,8 +20,22 @@ a.__proto__.getLast = function() {
 
 let b = [9,99];
 console.log(b);
+console.log('b.getLast()：');
 b.getLast();  
 
+console.log('a : ');
+console.dir(a);
+
+console.log('a.__proto__ : ');
+console.dir(a.__proto__);
+console.log('a.__proto__ === Array.prototype : ');
+console.dir(a.__proto__ === Array.prototype);
+
+console.log('console.dir(Array) : ');
+console.dir(Array);
+console.log('console.dir(Array.prototype) : ');
+console.dir(Array.prototype);  // 包含刚才自定义的getLast方法
+// console.dir(a.__proto__ === Array.prototype);
 </script>
 </body>
 </html>

@@ -1,11 +1,11 @@
-const { getList, getDeatil } = require("../controller/blog");
+const { getList, getDeatil, newBlog } = require("../controller/blog");
 const { SuccessModel } = require("../model/resModel");
 
 const blogAPIRouter = (req, res) => {
   const method = req.method;
   const path = req.url.split("?")[0];
-  console.log(method);
-  console.log(path);
+  console.log('blogAPIRouter-method: ' + method);
+  console.log('blogAPIRouter-path: ' + path);
 
   if (method === "GET") {
     if (path === "/api/blog/list") {
@@ -21,15 +21,16 @@ const blogAPIRouter = (req, res) => {
     }
   }
   if (method === "POST") {
+    // 新建
     if (path === "/api/blog/new") {
-      return "blog-new";
+      const data = newBlog(req.body)
+      return new SuccessModel(data);
     }
+    // 更新
     if (path === "/api/blog/update") {
       return "blog-update";
     }
-    if (path === "/api/blog/update") {
-      return "blog-update";
-    }
+    // 删除
     if (path === "/api/blog/del") {
       return "blog-del";
     }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 300px;
+        height: 300px;
+    }
+</style>
+<body>
+
+    <div>
+
+    </div>
+
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+// // 写法一
+// for (var i = 0xFFFFFF; i >= 0x000000 ; i--) {
+//   div.style.backgroundColor = '#' + i.toString(16);
+// }
+
+// 写法二
+var timer;
+var i=0x100000;
+
+function func() {
+  timer = setTimeout(func, 5000);
+  
+  div.style.backgroundColor = '#' + i.toString(16);
+  i = i + 16;
+  if (i >= 0xFFFFFF) clearTimeout(timer);
+  console.log('func执行玩了');
+}
+timer = setTimeout(func, 0);
+console.log('开始表演');
+    </script>
+</body>
+</html>

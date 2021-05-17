@@ -31,7 +31,22 @@ const getDeatil = (id) => {
         };
 }
 
+const newBlog = (data) => {
+    const blogData = data || {};
+    // blogData就是从请求中得到的对象，包含 title content createtime author等属性
+    console.log('controller blogData: ', blogData);
+
+    // 需要执行入表操作,后边补上
+
+    // 先假设执行成功，返回插入插入表时的id
+    return {
+        id: 3
+    }
+
+};
+
 module.exports = {
     getList,
-    getDeatil
+    getDeatil,
+    newBlog
 }
