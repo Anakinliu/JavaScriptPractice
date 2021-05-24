@@ -18,19 +18,29 @@ const blogAPIRouter = (req, res) => {
     if (path === "/api/blog/list") {
       const author = req.querys.author || "";
       const keyword = req.querys.keyword || "";
-      const listBlog = getList(author, keyword);
-      return new SuccessModel(listBlog);
+      const listResult = getList(author, keyword);
+      return listResult.then((sqlResult) => {
+        // sqlResult 就是db/mysql.js 的 con.query里 resolve 的results
+        return new SuccessModel(sqlResult);
+      }); // 返回的还是一个 Promise 对象
     }
     if (path === "/api/blog/detail") {
-      const deatilBlog = getDeatil(blogID);
-      return new SuccessModel(deatilBlog);
+      const deatilResult = getDeatil(blogID);
+      return deatilResult.then(detailBlog => {
+        return new SuccessModel(detailBlog);
+      });
     }
   }
+
   if (method === "POST") {
     // 新建
     if (path === "/api/blog/new") {
-      const data = newBlog(req.body);
-      return new SuccessModel(data);
+      // 用户名在登录后才能得到，这里先写假数据
+      req.body.author = 'bee';
+      const addBlogResult = newBlog(req.body);
+      return addBlogResult.then(data => {
+        return new SuccessModel(data);
+      })
     }
     // 更新
     if (path === "/api/blog/update") {

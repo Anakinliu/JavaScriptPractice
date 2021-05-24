@@ -1,45 +1,49 @@
+const { execSql } = require('../db/mysql');
+
 const getList = (author, keyword) => {
   // 一个包含若干个完整博客对象的列表
-  return [
-    {
-      id: 1,
-      title: "第一个博客",
-      createTime: 1620782276765,
-      content: "在编译语言中，常量将在编译时替换,这导致更好的性能。",
-      author: "小米",
-    },
-    {
-      id: 2,
-      title: "第二个博客",
-      createTime: 1620782302208,
-      content: "在编译语言中，常量将在编译时替换,这导致更好的性能。",
-      author: "小明",
-    },
-  ];
+  let sql = `SELECT * FROM blogtable WHERE 1=1 `;
+  if (author) {
+    sql += `AND author='${author}' `;
+  }
+  if (keyword) {
+    sql += `AND title LIKE '%${keyword}%' `;
+  }
+  sql += `ORDER BY createtime DESC;`
+  return execSql(sql);
 };
 
 const getDeatil = (id) => {
-  // 先不进行检查和运算，直接返回假数据
-  return {
-    id: 1,
-    title: "第一个博客",
-    createTime: 1620782276765,
-    content: "在编译语言中，常量将在编译时替换,这导致更好的性能。",
-    author: "小米",
-  };
+  // 先不进行 sql 是否合法的检查
+  const sql = `SELECT * FROM blogtable WHERE id=${id}`;
+  return execSql(sql).then((rowsResult) => {
+    return rowsResult[0];  //  根据数据库记录的 id 查询，id唯一，故只需返回第一个
+  })
 };
 
 const newBlog = (data) => {
   const blogData = data || {};
   // blogData就是从请求中得到的对象，包含 title content createtime author等属性
   console.log("controller blogData: ", blogData);
+  if (data) {
+    const title = blogData.title;
+    const content = blogData.content;
+    const author = blogData.author;
+    const createtime = Date.now();
+    const sql = `
+      INSERT INTO blogtable(title, content, author, createtime) VALUES (
+        "${title}","${content}","${author}","${createtime}"
+      );
+    `
+    console.log(sql);
+    return execSql(sql).then((insertResult) => {
+      return {
+        'insertId': insertResult.insertId,
+        'affectedRows': insertResult.affectedRows
+      };  //  根据数据库记录的 id 查询，id唯一，故只需返回第一个
+    })
+  }
 
-  // 需要执行入表操作,后边补上
-
-  // 先假设执行成功，返回插入插入表时的id
-  return {
-    id: 3,
-  };
 };
 
 const updateBlog = (id, data) => {

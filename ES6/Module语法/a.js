@@ -9,3 +9,18 @@ export {
     arr,
     f
 }
+
+export function tool() {
+    console.log('this is tool.');
+}
+
+class Animal {
+    constructor(n) {
+        this.name = n;
+    }
+    bark() {
+        console.log('我是' + this.name);
+    }
+}
+
+export default Animal;

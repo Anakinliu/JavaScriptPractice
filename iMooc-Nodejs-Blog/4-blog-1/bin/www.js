@@ -1,4 +1,4 @@
-const appRouters = require('./app')
+const appRouters = require('../app')
 const http = require('http')
 const PORT = 3000;
 

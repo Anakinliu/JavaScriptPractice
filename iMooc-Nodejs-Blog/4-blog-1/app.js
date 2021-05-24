@@ -36,17 +36,33 @@ const handleHttp = function (req, res) {
     req.body = postData;  // 会在路由中使用，以获取请求中的 post 数据
     console.log('handleHttp req.body: ');
     console.dir(req.body);
-    // 得到了JSON结果
-    const blogData = blogAPIRouter(req, res);
-    const userData = userAPIRouter(req, res);
 
-    if (blogData) {
-      // 设置相应数据格式为JSON，以便浏览器可以正确解析
-      res.setHeader("Content-type", "application/json");
-      console.log('blogData: ', blogData);
-      res.end(JSON.stringify(blogData));
+    // 得到了一个 Promise 对象
+    const blogPromise = blogAPIRouter(req, res);
+
+    if (blogPromise) {
+      blogPromise.then((blogData) => {
+        if (blogData) {
+          // 设置相应数据格式为JSON，以便浏览器可以正确解析
+          res.setHeader("Content-type", "application/json");
+          console.log('blogData: ', blogData);
+          res.end(JSON.stringify(blogData));
+        }
+      });
       return;
     }
+
+
+    const userData = userAPIRouter(req, res);
+    
+    // if (blogPromise) {
+    //   // 设置相应数据格式为JSON，以便浏览器可以正确解析
+    //   res.setHeader("Content-type", "application/json");
+    //   console.log('blogData: ', blogPromise);
+    //   res.end(JSON.stringify(blogPromise));
+    //   return;
+    // }
+
     if (userData) {
       res.setHeader("Content-type", "application/json");
       res.end(JSON.stringify(userData));
