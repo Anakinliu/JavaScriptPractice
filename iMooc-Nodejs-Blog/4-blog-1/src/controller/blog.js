@@ -47,19 +47,42 @@ const newBlog = (data) => {
 };
 
 const updateBlog = (id, data) => {
-  const blogID = id;
-  const blogData = data;
-  // 更新数据库的博客
+  console.log('updateBlog ', id, data);
+  if (id && data) {
+    const blogID = id;
+    const blogData = data;
 
-  // 成功更新返回 true
-  return false;
+    const title = blogData.title;
+    const content = blogData.content;
+    const sql = `
+      UPDATE blogtable SET title="${title}", content="${content}" WHERE id=${blogID};
+    `
+    console.log(sql);
+    return execSql(sql).then((updateResult) => {
+      console.log(updateResult);
+      if (updateResult.affectedRows > 0) {
+        return true;
+      }
+      return false;
+    })
+  }
 };
 
-const deleteBlog = (id) => {
-  const blogID = id;
-  // 根据 id 删除表中的博客
-
-  return true;
+const deleteBlog = (blogID, author) => {
+  console.log('deleteBlog ', blogID, author);
+  if (blogID && author) {
+    const sql = `
+      DELETE FROM blogtable WHERE id=${blogID} AND author="${author}";
+    `;
+    console.log(sql);
+    return execSql(sql).then((delResult) => {
+      console.log(delResult);
+      if (delResult.affectedRows > 0) {
+        return true;
+      }
+      return false;
+    })
+  }
 };
 
 module.exports = {
