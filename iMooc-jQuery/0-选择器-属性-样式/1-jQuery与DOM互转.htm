@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.6.0.js" ></script>
+</head>
+<body>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure tempore atque libero iste nihil molestias culpa commodi voluptate a harum. Quam assumenda nisi autem debitis libero fugit minima odio doloremque?
+    Error, excepturi optio voluptates placeat necessitatibus esse incidunt ea consequuntur maiores aliquid libero, minus, dignissimos sapiente vero. Quaerat sequi, magnam similique nobis error obcaecati! Error natus voluptate modi non doloribus.</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia in nostrum vero repellendus aliquid quibusdam aspernatur incidunt nisi dolor ea, repudiandae tenetur. Expedita, quaerat autem debitis facere laborum aliquid temporibus!
+    Non, ipsam fugiat, sapiente sint expedita, quo veniam praesentium pariatur quis nostrum voluptatem qui magni cum quaerat vero animi maxime. Omnis, modi ipsam nulla suscipit quibusdam quo sapiente delectus pariatur.
+    Voluptas dolorem alias id odio dolore quis excepturi earum facere! Ipsam, voluptas ea, illo quam vel magni quasi deserunt dolorem, commodi adipisci sit quidem assumenda aspernatur sequi laboriosam laudantium ratione.lorem</div>
+    <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti minus, iure quo, cupiditate omnis unde possimus at quaerat, labore nostrum laboriosam alias esse enim nulla consequuntur et aspernatur laborum animi?</div>
+    <script>
+        $(document).ready(() => {
+            let divs = document.querySelectorAll("div");
+            // DOM 转为 jQuery
+            let $divs = $(divs);  
+            $divs.css('color', 'red');
+            // 从 jQuery 得到 DOM
+            let domDiv = $divs.get(0);
+            console.log(domDiv);
+            domDiv.style.color = 'blue';
+        });
+    </script>
+</body>
+</html>

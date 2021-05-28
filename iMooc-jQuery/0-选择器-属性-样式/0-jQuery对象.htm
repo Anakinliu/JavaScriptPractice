@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p id="imooc">wenben</p>
+    <script>
+            $(document).ready(() => {
+                var p = $('#imooc');
+                // console.log(p);
+                let res = p.text('您好！通过慕课网学习jQuery才是最佳的途径');
+                console.dir(res);
+                let resres = res.css('color', 'red');
+                console.dir(resres)
+            });
+           
+        
+
+        
+    </script>
+</body>
+</html>

@@ -6,16 +6,31 @@ const userAPIRouter = (req, res) => {
   console.log(method);
   console.log(path);
 
-  if (method === "POST") {
+  if (method === "GET") {
     if (path === "/api/blog/login") {
-      const {username, password} = req.body;
-      const result = loginCheck(username, password);
-      console.log('userAPIRouter-login: ', username, password);
-      if (result) {
-        return new SuccessModel("登陆成功" + username);
-      } else {
-        return new ErrorModel("登陆失败" + username);
-      }
+      // const {username, password} = req.body;
+      const {username, password} = req.querys;
+      const resultPromise = loginCheck(username, password);
+
+      return resultPromise.then(queryResult => {
+        if (queryResult.realname) {
+          res.setHeader('Set-Cookie', `username=${queryResult.realname}`)
+          return new SuccessModel(queryResult.realname + '登陆成功'); 
+        } else {
+          return new ErrorModel(username + '不存在或密码错误');
+        }
+      })
+    }
+  }
+
+  if (method === "GET") {
+    if (path === "/api/blog/login-test") {
+        if (req.cookie.username) {
+          return Promise.resolve(new SuccessModel(req.cookie.username + '已经登陆')); 
+        } else {
+          return Promise.resolve(new ErrorModel('你还未登陆'));
+        }
+      
     }
   }
   // res.end(JSON.stringify({"status": "OK"}));
