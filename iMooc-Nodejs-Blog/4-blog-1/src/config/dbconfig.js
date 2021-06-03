@@ -1,7 +1,7 @@
 const currentEnv = process.env.NODE_ENV
 
 let MYSQL_CONFIG;
-
+let REDIS_CONFIG;
 if (currentEnv === 'dev') {
     // 开发时期的数据库配置
     MYSQL_CONFIG = {
@@ -11,6 +11,12 @@ if (currentEnv === 'dev') {
         database : 'myblog',
         port: '3306'
     };
+
+    REDIS_CONFIG = {
+        port: 6379,
+        host: '127.0.0.1'
+    }
+
 }
 
 if (currentEnv === 'production') {
@@ -22,8 +28,14 @@ if (currentEnv === 'production') {
         database : 'myblog',
         port: '3306'
     };
+
+    REDIS_CONFIG = {
+        port: 6379,
+        host: '127.0.0.1'
+    }
 }
 
 module.exports = {
-    MYSQL_CONFIG
+    MYSQL_CONFIG,
+    REDIS_CONFIG
 }

@@ -7,6 +7,19 @@ const {
 } = require("../controller/blog");
 const { SuccessModel, ErrorModel } = require("../model/resModel");
 
+// 公用的检查是否登陆函数
+/**
+ * 
+ * @param {*} req HTTP请求
+ * @returns 如果sesion中 无 用户名,证明用户未登录
+ */
+const loginChecks = (req) => {
+  if (!req.session.userName) {
+    return Promise.resolve(new ErrorModel('你还未登陆'));
+  }
+}
+
+
 const blogAPIRouter = (req, res) => {
   const method = req.method;
   const path = req.url.split("?")[0];
@@ -15,6 +28,8 @@ const blogAPIRouter = (req, res) => {
   console.log("blogAPIRouter-path: " + path);
 
   if (method === "GET") {
+
+    // 博客列表
     if (path === "/api/blog/list") {
       const author = req.querys.author || "";
       const keyword = req.querys.keyword || "";
@@ -24,6 +39,8 @@ const blogAPIRouter = (req, res) => {
         return new SuccessModel(sqlResult);
       }); // 返回的还是一个 Promise 对象
     }
+
+    // 博客详情
     if (path === "/api/blog/detail") {
       const deatilResult = getDeatil(blogID);
       return deatilResult.then(detailBlog => {
@@ -32,17 +49,23 @@ const blogAPIRouter = (req, res) => {
     }
   }
 
+
   if (method === "POST") {
-    // 新建
+    // 用户新建博客
     if (path === "/api/blog/new") {
-      // 用户名在登录后才能得到，这里先写假数据
-      req.body.author = 'bee';  // 这里先写假数据
+      // 用户在登录后才能进新建操作
+      const checkResult = loginChecks(req);
+      if (checkResult) {
+        return checkResult;
+      }
+      const author = req.session.userName;
+      req.body.author = author; 
       const addBlogPromise = newBlog(req.body);
       return addBlogPromise.then(data => {
         return new SuccessModel(data);
       })
     }
-    // 更新
+    // 用户更新博客
     if (path === "/api/blog/update") {
       const updateBlogPromise = updateBlog(blogID, req.body);
       return updateBlogPromise.then(data => {
@@ -54,9 +77,15 @@ const blogAPIRouter = (req, res) => {
       })
       
     }
-    // 删除
+
+    // 用户删除博客
     if (path === "/api/blog/del") {
-      const author = 'adm';
+      // 用户在登录后才能进新建操作
+      const checkResult = loginChecks(req);
+      if (checkResult) {
+        return checkResult;
+      }
+      const author = req.session.userName;
       const delBlogPromise = deleteBlog(blogID, author);
       return delBlogPromise.then(data => {
         if (data) {

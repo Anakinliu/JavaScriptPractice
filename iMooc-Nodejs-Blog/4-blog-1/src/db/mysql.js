@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 
-const { MYSQL_CONFIG } = require('../config/mysqlConfig');
+const { MYSQL_CONFIG } = require('../config/dbconfig');
 
 // console.log(MYSQL_CONFIG);
 // 创建连接

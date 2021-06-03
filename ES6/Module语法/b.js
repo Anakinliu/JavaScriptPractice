@@ -16,6 +16,7 @@ console.log(arr);
 f();
 tool();
 
-whatthefuck();
+whatthefuck.show();
+console.log(whatthefuck.age);
 
 new proClass('叫兽').bark();
