@@ -13,9 +13,10 @@ const userAPIRouter = (req, res) => {
   console.log(method);
   console.log(path);
 
+  // 登陆
   if (method === "POST") {
-    if (path === "/api/blog/login") {
-      const {username, password} = req.body;
+    if (path === "/api/user/login") {
+      const { username, password } = req.body;
       // const { username, password } = req.querys;
       const resultPromise = loginCheck(username, password);
 

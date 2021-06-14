@@ -1,5 +1,6 @@
 const { execSql } = require('../db/mysql');
 
+// 所有blog
 const getList = (author, keyword) => {
   // 一个包含若干个完整博客对象的列表
   let sql = `SELECT * FROM blogtable WHERE 1=1 `;
@@ -13,6 +14,7 @@ const getList = (author, keyword) => {
   return execSql(sql);
 };
 
+// blog详情
 const getDeatil = (id) => {
   // 先不进行 sql 是否合法的检查
   const sql = `SELECT * FROM blogtable WHERE id=${id}`;
@@ -21,6 +23,7 @@ const getDeatil = (id) => {
   })
 };
 
+// 新建blog
 const newBlog = (data) => {
   const blogData = data || {};
   // blogData就是从请求中得到的对象，包含 title content createtime author等属性
@@ -46,6 +49,7 @@ const newBlog = (data) => {
 
 };
 
+// 更新blog
 const updateBlog = (id, data) => {
   console.log('updateBlog ', id, data);
   if (id && data) {
@@ -68,6 +72,7 @@ const updateBlog = (id, data) => {
   }
 };
 
+// 删除 blog
 const deleteBlog = (blogID, author) => {
   console.log('deleteBlog ', blogID, author);
   if (blogID && author) {

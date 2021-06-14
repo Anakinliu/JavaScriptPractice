@@ -15,8 +15,10 @@ const { SuccessModel, ErrorModel } = require("../model/resModel");
  */
 const loginChecks = (req) => {
   if (!req.session.userName) {
+    // 未登录
     return Promise.resolve(new ErrorModel('你还未登陆'));
   }
+  return false;  //已登录
 }
 
 
@@ -31,8 +33,18 @@ const blogAPIRouter = (req, res) => {
 
     // 博客列表
     if (path === "/api/blog/list") {
-      const author = req.querys.author || "";
+      let author = req.querys.author || "";
       const keyword = req.querys.keyword || "";
+
+      if (req.querys.isadmin) {
+        const loginCheckResult = loginChecks(req);
+        if (loginCheckResult) {
+          return loginCheckResult;
+        }
+        author = req.session.userName;
+      }
+
+
       const listResult = getList(author, keyword);
       return listResult.then((sqlResult) => {
         // sqlResult 就是db/mysql.js 的 con.query里 resolve 的results
@@ -59,7 +71,7 @@ const blogAPIRouter = (req, res) => {
         return checkResult;
       }
       const author = req.session.userName;
-      req.body.author = author; 
+      req.body.author = author;
       const addBlogPromise = newBlog(req.body);
       return addBlogPromise.then(data => {
         return new SuccessModel(data);
@@ -67,6 +79,12 @@ const blogAPIRouter = (req, res) => {
     }
     // 用户更新博客
     if (path === "/api/blog/update") {
+      // 需要检查是否登陆
+      const checkResult = loginChecks(req);
+      if (checkResult) {
+        return checkResult;
+      }
+
       const updateBlogPromise = updateBlog(blogID, req.body);
       return updateBlogPromise.then(data => {
         if (data) {
@@ -75,12 +93,12 @@ const blogAPIRouter = (req, res) => {
           return new ErrorModel("更新失败" + blogID);
         }
       })
-      
+
     }
 
     // 用户删除博客
     if (path === "/api/blog/del") {
-      // 用户在登录后才能进新建操作
+      // 用户在登录后才能 删除blog
       const checkResult = loginChecks(req);
       if (checkResult) {
         return checkResult;

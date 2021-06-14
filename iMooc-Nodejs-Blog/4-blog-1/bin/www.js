@@ -1,6 +1,6 @@
 const appRouters = require('../app')
 const http = require('http')
-const PORT = 3000;
+const PORT = 8000;
 
 const server = http.createServer(appRouters);
 server.listen(PORT);
