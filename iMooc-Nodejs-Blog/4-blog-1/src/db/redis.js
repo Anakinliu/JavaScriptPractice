@@ -8,7 +8,7 @@ client.on("error", (err) => {
     console.log(err);
 });
 
-// set是同步执行的,但是redis.print是异步的,不过我们使用redis.print,所以这里不使用promise
+// set是同步执行的,但是redis.print是异步的,不过我们使用redis.print里的值,所以这里不使用promise
 function setKV(key, value) {
     // 如果不是基本类型,则转为字符串后再存储
     if (typeof value === Object) {

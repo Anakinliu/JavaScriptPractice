@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>constructor 不可信</title>
+</head>
+
+<body>
+    <script>
+        function Person() { }
+        console.dir(Person);
+        console.dir(Person.prototype);
+        Person.prototype.hairColor = "black";
+        Person.prototype.sayHello = function () {
+            console.log("Hello!");
+        };
+        var person1 = new Person();
+        var person2 = new Person();
+        function Dog() { }
+        person1.constructor = Dog;
+        Dog.prototype.hairColor = "red"; // 在Dog.prototype上定义hairColor属性
+        console.log(person1.constructor); // Dog
+        console.log(person2.constructor); // Person
+        console.log(person1.hairColor); // balck
+        // 因为是沿着person1.__proto__.__proto__查找的
+        console.dir(person1);
+        console.dir(person1.__proto__);
+    </script>
+</body>
+
+</html>

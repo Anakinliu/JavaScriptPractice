@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
             margin: 0 20px;
             line-height: 1;
         }
+
         a {
             text-decoration-line: none;
         }
@@ -18,17 +20,20 @@
             font-size: 20px;
             font-weight: bold;
         }
+
         .info-container span,
         .info-container a {
             font-size: 14px;
             color: #999;
         }
+
         .content-wrapper {
             margin-top: 20px;
             border-top: 1px solid #ccc;
         }
     </style>
 </head>
+
 <body>
     <h1 id="title" class="title"></h1>
     <div id="info-container" class="info-container"></div>
@@ -36,9 +41,18 @@
         <p id="content"></p>
     </div>
 
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
-    <script src="https://cdn.bootcss.com/moment.js/2.23.0/locale/zh-cn.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.23.0/locale/zh-cn.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/zh-cn.min.js"
+        integrity="sha512-j83eLbbs+KVKlv8KI6i2lWPlLGY1nltBDnWXIMedQYYjhd5sfifdJB6f2Wxdli5mfrNqRbESVpqSXDHhzMREGw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         // 发送 get 请求
         function get(url) {
@@ -83,12 +97,13 @@
             $title.text(data.title)
             $content.text(data.content)
             $infoContainer.append($(`
-                <span>
-                    <a href="/index.html?author=${data.author}">${data.author}</a>
-                </span>
-                <span>${getFormatDate(data.createtime)}</span>
+            <span>
+                <a href="/index.html?author=${data.author}">${data.author}</a>
+            </span>
+            <span>${getFormatDate(data.createtime)}</span>
             `))
         })
     </script>
 </body>
+
 </html>

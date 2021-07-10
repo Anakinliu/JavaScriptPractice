@@ -6,16 +6,16 @@ client.on("error", (err) => {
     console.log(err);
 });
 
-console.log('1');
+console.log('start');
 let i = 0;
-while (i < 10) {
-    client.set(i, i, redis.print);
-    console.log('insert');
-    i += 1;
-}
-console.log('2');
-client.get("game", redis.print);
-console.log('3');
+
+client.set(i, "game", redis.print);
+
+client.get(i, redis.print);
+// client.get("game", redis.print);
+
+
 client.quit()
-console.log('4');
+
+console.log('end 4');
 

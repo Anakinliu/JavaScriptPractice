@@ -1,11 +1,6 @@
 const { loginCheck } = require('../controller/user')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 
-const setCookieExpires = () => {
-  const now = new Date();
-  now.setTime(now.getTime() + (24 * 60 * 60 * 1000));
-  return now.toString();
-}
 
 const userAPIRouter = (req, res) => {
   const method = req.method;
@@ -16,6 +11,7 @@ const userAPIRouter = (req, res) => {
   // 登陆
   if (method === "POST") {
     if (path === "/api/user/login") {
+      
       const { username, password } = req.body;
       // const { username, password } = req.querys;
       const resultPromise = loginCheck(username, password);
