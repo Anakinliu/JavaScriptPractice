@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0-实现一个repeat</title>
+</head>
+
+<body>
+    <script>
+        function repeat(func, times, wait) {
+            return (arg) => {
+                for (let i = 1; i <= times; i++) {
+                    setTimeout(() => {
+                        func(arg);
+                    }, wait * i)
+                }
+            }
+        }
+        const repeatFunc = repeat(alert, 3, 2000);
+        repeatFunc("hellworld");
+    </script>
+</body>
+
+</html>

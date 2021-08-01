@@ -44,7 +44,7 @@ const getPostData = (req) => {
 // 入口
 const handleHttp = function (req, res) {
   // 每当一个用户进入,就有一条key-value加入到SESSION_DATA中
-  console.log('handleHttp: ', SESSION_DATAs, req.url);
+  // console.log('handleHttp: ', SESSION_DATAs, req.url);
 
   // req要传到下面的API里，所以这种方法带值方便
   req.querys = querystring.parse(req.url.split("?")[1]);
@@ -78,8 +78,8 @@ const handleHttp = function (req, res) {
   }
   // 绑定为 req 的一个属性,就像绑定 req.querys 那样,方便后面的路由使用
   // 每次请求 url 都经过上面验证后,存储在 req
-  req.session = SESSION_DATAs[xID];
-  console.log("有值? ", SESSION_DATAs[xID]);
+  req.session = SESSION_DATAs[xID];  // 将SESSION_DATAs[xID]引用复制给了req.session,所以req.session在user.js内被修改时,SESSION_DATAs[xID]也会被修改
+  // console.log("有值? ", SESSION_DATAs[xID]);
 
   getPostData(req).then((postData) => {
     req.body = postData;  // req.body 会在路由中使用，存储了请求中 post 数据
