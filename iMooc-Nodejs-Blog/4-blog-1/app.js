@@ -72,7 +72,7 @@ const handleHttp = function (req, res) {
     }
   } else {
     needSetCookie = true;
-    // 生成一个 xID
+    // 生成一个 xID,时间+随机数
     xID = `${Date.now()}_${Math.random()}`;
     SESSION_DATAs[xID] = {};
   }
