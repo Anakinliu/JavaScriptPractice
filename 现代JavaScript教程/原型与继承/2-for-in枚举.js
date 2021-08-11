@@ -19,7 +19,7 @@ let admin = {
     __proto__: user,
     isAdmin: true
 };
-
+console.log('admin: for in: ');
 for (let e in admin) {
     console.log(e, admin[e]);
 }
