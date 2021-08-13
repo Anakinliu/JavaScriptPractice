@@ -52,6 +52,7 @@ const handleHttp = function (req, res) {
   // 解析 cookie
   // console.log('cookie: ', req.headers.cookie, ' type ', typeof req.headers.cookie);  //string
   req.cookie = {};
+  // 从头部获取cookie
   if (req.headers.cookie) {
     req.headers.cookie.split(";").forEach(element => {
       const kv = element.trim().split("=");
