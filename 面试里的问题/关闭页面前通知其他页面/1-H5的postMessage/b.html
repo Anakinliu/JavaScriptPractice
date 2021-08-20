@@ -1,0 +1,24 @@
+<!-- B.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B</title>
+    <button type="button" onclick="sendA()">发送A页面消息</button>
+</head>
+
+<body>
+    <h1>B 页面</h1>
+    <span></span>
+    <script>
+        window.name = 'B'
+        function sendA() {
+            let targetWindow = window.opener
+            targetWindow.postMessage('Hello A', "http://127.0.0.1:5500");
+        }
+    </script>
+</body>
+
+</html>

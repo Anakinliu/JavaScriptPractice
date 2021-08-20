@@ -1,0 +1,21 @@
+<!-- B.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B</title>
+    <button type="button" onclick="sendA()">发送A页面消息</button>
+</head>
+<body>
+    <h1>B 页面</h1>
+    <span></span>
+    <script>
+        window.name = 'B'
+        window.onbeforeunload = function (e) {
+            window.open('A.html#close', "A")
+            return '确定离开此页吗？';
+        }
+    </script>
+</body>
+</html>

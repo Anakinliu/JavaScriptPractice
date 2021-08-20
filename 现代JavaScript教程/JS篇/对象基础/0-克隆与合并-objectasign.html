@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0-克隆与合并-objectasign</title>
+</head>
+
+<body>
+    <script>
+        let x = { age: 99, friends: [1, 2, 3] };
+        let clone = Object.assign({}, x);
+        console.log(clone.friends == x.friends);
+    </script>
+</body>
+
+</html>

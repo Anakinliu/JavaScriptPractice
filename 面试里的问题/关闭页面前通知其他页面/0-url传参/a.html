@@ -1,0 +1,26 @@
+<!-- A.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A</title>
+</head>
+
+<body>
+    <h1>A 页面</h1>
+    <button type="button" onclick="openB()">B</button>
+    <script>
+        window.name = 'A'
+        function openB() {
+            window.open("B.html", "B")
+        }
+
+        window.addEventListener('hashchange', function () {// 监听 hash
+            alert(window.location.hash)
+        }, false);
+    </script>
+</body>
+
+</html>

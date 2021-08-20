@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0-加载脚本</title>
+</head>
+
+<body>
+    <script>
+        console.log("1");
+
+        function loadScript(url) {
+            return new Promise(function (resolve, reject) {
+                console.log("2");
+
+                let scriptEle = document.createElement("script");
+                scriptEle.src = url;
+                scriptEle.onload = () => {
+                    console.log("3");
+                    resolve("onload调用了");
+                };
+                scriptEle.onerror = () => {
+                    console.log("4");
+                    reject("onerror调用了");
+                };
+
+                document.head.appendChild(scriptEle);
+                
+                console.log("5");
+            });
+        }
+
+        let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+        promise.then(function (value) {
+            console.log(value);
+        }, function (error) {
+            console.log(error);
+        })
+
+    </script>
+</body>
+
+</html>
