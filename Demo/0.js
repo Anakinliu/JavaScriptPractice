@@ -1,14 +1,13 @@
-var x = 200;
-obj = {
-    x: 300,
-    fn: function () {
-        console.log(this.x);
+function A() {
 
-        function fn2() {
-            console.log(this);
-            console.log(this.x);
-        }
-        fn2()
-    }
 }
-obj.fn()
+
+function B() {
+    A.call(this)
+}
+B.prototype = Object.create(A.prototype);
+
+let b = new B();
+
+console.log(b.__proto__.__proto__ === A.prototype);
+
