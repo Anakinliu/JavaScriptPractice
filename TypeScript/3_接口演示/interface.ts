@@ -3,6 +3,7 @@ interface People {
     height: number;
     weight: number;
     birth: Date;
+    move(): void;
 }
 // 不会在编译后的JS文件中显示
 

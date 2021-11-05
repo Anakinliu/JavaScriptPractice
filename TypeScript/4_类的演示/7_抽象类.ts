@@ -1,4 +1,4 @@
-abtract ass Knowlege {
+abstract class Knowledge {
     time: number;
     constructor(time:number) {
         this.time = time;

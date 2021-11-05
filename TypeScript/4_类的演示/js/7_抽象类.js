@@ -14,23 +14,15 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-abtract;
-ass;
-Knowlege;
-{
-    time: number;
-    constructor(time, number);
-    {
+var Knowledge = /** @class */ (function () {
+    function Knowledge(time) {
         this.time = time;
     }
-    abstract;
-    learn();
-    void ;
-    method();
-    {
+    Knowledge.prototype.method = function () {
         console.log('听说读写');
-    }
-}
+    };
+    return Knowledge;
+}());
 var Book = /** @class */ (function (_super) {
     __extends(Book, _super);
     function Book(time, name) {

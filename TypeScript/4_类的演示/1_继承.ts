@@ -1,7 +1,8 @@
 interface Animal {
     weight:number
     eat():void
-    move():void
+    move(): void
+    add (x: number|string, y: number|string): number|string
 }
 
 class Human implements Animal {
@@ -11,14 +12,16 @@ class Human implements Animal {
         this.weight = weight
     }
 
+    add(x: string|number, y: string|number): string | number {
+        throw new Error("Method not implemented.");
+    }
+
     eat(): void {
-        console.log('human eat');
-        
+        console.log('human eat'); 
     }
 
     move(): void {
-        console.log('human move');
-        
+        console.log('human move'); 
     }
     
 }
@@ -31,7 +34,6 @@ class Programmer extends Human {
 
     program():void {
         console.log('programmer is programming');
-        
     }
 
     // 支持重写
@@ -39,15 +41,10 @@ class Programmer extends Human {
         console.log('no eat');
         return 2;
     }
-    // 不支持重载
-    // eat(a,b):number {
-    //     console.log('no eat');
-    //     return 2;
-    // }
 
 }
 
-let me = new Programmer(99);
+let me: Programmer = new Programmer(99);
 me.program()
 me.move()
 me.eat()
