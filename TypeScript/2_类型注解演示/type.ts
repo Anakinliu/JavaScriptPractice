@@ -1,6 +1,8 @@
-function test(num:Number) {
+//#region sdsd
+function test(num: Number) {
      console.log('数字是: ', num);
 }
+//#endregion
 
 let n = '4';
 let m = 5;
