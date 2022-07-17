@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inline-block换行</title>
+    <style>
+        *,
+        :after,
+        :before {
+            box-sizing: inherit;
+        }
+
+        .box {
+            width: 600px;
+            background-color: aquamarine;
+        }
+
+        .list1 {
+            display: list-item;
+            word-break: break-all;
+        }
+
+        .p1 {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="box">
+        <li class="list1">
+            <p class="p1">sdfngvkldf<code>sdfdsgdgdfgfdgdfgfddfsfsdfsdfsdfsdfsdfsdfsdfsdfdsfdsf</code>hngkjdhnfkgljdksgnfdsklngk</p>
+        </li>
+    </ul>
+</body>
+
+</html>
